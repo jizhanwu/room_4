@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Suan Shu You Xi</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_insert">insert</string>
+    <string name="button_update">UPDATE</string>
+    <string name="button_clere">CLERE</string>
+    <string name="button_delete">DELETE</string>
+    <string name="text">TextView</string>
+    <string name="_1">xuhap</string>
+    <string name="cardview">CardView</string>
+    <string name="you_jiantou">you_jiantou</string>
+    <string name="xuhap">1</string>
+    <string name="Englishi">Englishi</string>
+    <string name="chinese">chinese</string>
+    <string name="todo">TODO</string>
+</resources>
