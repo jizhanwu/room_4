@@ -29,13 +29,13 @@ public abstract class WordDatabase extends RoomDatabase {
     }
     //创建一个提取WordDao这个接口类的全部方法名
     public abstract WordDao getWordDao();
-    static final Migration MIGRATION_2_3 = new Migration(2,3) {
-        @Override
-        public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL( "ALTER TABLE word ADD COLUMN bar_data INTEGER NOT NULL DEFAULT 1");
+    //static final Migration MIGRATION_2_3 = new Migration(2,3) {
+       /// @Override
+       // public void migrate(@NonNull SupportSQLiteDatabase database) {
+         //   database.execSQL( "ALTER TABLE word ADD COLUMN bar_data INTEGER NOT NULL DEFAULT 1");
 
-        }
-    };
+      //  }
+   // };
 
     private static final Migration MIGRATION_3_4 = new Migration(3,4) {
         @Override
