@@ -2,7 +2,7 @@ package com.example.suanshuyouxi;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.ContactsContract;
+//import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +23,7 @@ import java.util.List;
 //创建一个类，实现适配器的功能（创建—>数据绑定->返回）
 public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
     private List<Word> allWords = new ArrayList<>();//为了防空指针（为allWords在内存创建一个新的空间）
-    private boolean useCardView;//新建一个布尔变量，判断ture还是fose？
+    private boolean useCardView;//新建一个布尔变量，useCardView是一个装载判断ture还是fose的容器
 
     ShiPeiQi(boolean useCardView) {//这个适配器通过useCardView来承载是“错”还是“对”？
         this.useCardView = useCardView;
@@ -68,7 +68,7 @@ public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {//设置点击跳转第三方网页链接
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://m.youdao.com/dict?le=eng&q=google" + holder.textView_Eniglishi.getText());
+                Uri uri = Uri.parse("https://developer.android.google.cn/" + holder.textView_Eniglishi.getText());
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(uri);
                 holder.itemView.getContext().startActivity(intent);

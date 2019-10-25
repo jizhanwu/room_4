@@ -13,6 +13,7 @@ public class Word {
     @ColumnInfo(name = "chinese_meanin")//用@CloumnInfo定义一个列名称，是一个变量
     private String chineseMeaning;
 
+
     //创建一个与类名称相关的方法(对象或变量或函数)，内部实例化变量（通过鼠标右键Genreate,Constructor 或Alt+Insert
      Word(String word, String chineseMeaning) {
         this.word = word;
