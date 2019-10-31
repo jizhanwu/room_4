@@ -1,4 +1,4 @@
-package com.example.suanshuyouxi;
+package com.example.room_3;
 
 
 import androidx.lifecycle.LiveData;
@@ -13,7 +13,7 @@ import java.util.List;
 @Dao  //数据访问对象，数据库操作接口,里面全是方法名，对应四个按钮功能
 public interface WordDao {
     @Insert
-    void insertword(Word...words);//插入数据接口
+    void insertWords(Word...words);//插入数据接口
     @Update
     void updateWords(Word... words);//更新数据接口
     @Delete

@@ -1,4 +1,4 @@
-package com.example.suanshuyouxi;
+package com.example.room_3;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -12,15 +12,23 @@ public class Word {
     private String word;
     @ColumnInfo(name = "chinese_meanin")//用@CloumnInfo定义一个列名称，是一个变量
     private String chineseMeaning;
+    @ColumnInfo(name = "chinese_invisible")//用@CloumnInfo定义一个列存放布尔值名称，是一个变量
+      private boolean chineseInvisible;
+    //get and set  布尔列
+     boolean isChineseInvisible() {
+        return chineseInvisible;
+    }
 
+     void setChineseInvisible(boolean chineseInvisible) {
+        this.chineseInvisible = chineseInvisible;
+    }
 
-    //创建一个与类名称相关的方法(对象或变量或函数)，内部实例化变量（通过鼠标右键Genreate,Constructor 或Alt+Insert
+    //get and set
+
      Word(String word, String chineseMeaning) {
         this.word = word;
         this.chineseMeaning = chineseMeaning;
     }
-    //创建Get ane Set,即方法体，为接口返回具体值，（通过鼠标右键Genreate,Get"and"Set 或Alt+Insert
-    //实现了接口:getid,getWord,getChineseMeaning
 
      int getId() {  //提取id值，并返回一个id值
         return id;
@@ -30,7 +38,7 @@ public class Word {
         this.id = id;
     }
 
-     String getWord() {   //提取word值，并返回一个word值
+     String getWord() {   //提取英文值，并返回一个英文值
         return word;
     }
 
@@ -38,7 +46,8 @@ public class Word {
         this.word = word;
     }
 
-     String getChineseMeaning() {  //提取英文列值，并返回一个列值
+
+     String getChineseMeaning() {  //提取中文列值，并返回一个列值
         return chineseMeaning;
     }
 
