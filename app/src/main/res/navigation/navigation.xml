@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
+    android:label="Danci"
     app:startDestination="@id/danci_Fragment2">
 
     <fragment
         android:id="@+id/add_Fragment"
         android:name="com.example.room_3.Add_Fragment"
-        android:label="fragment_add_"
+        android:label="Add"
         tools:layout="@layout/fragment_add_" />
     <fragment
         android:id="@+id/danci_Fragment2"
-        android:name="com.example.room_3.danci_Fragment"
-        android:label="fragment_danci_"
-        tools:layout="@layout/fragment_danci_" >
+        android:name="com.example.room_3.danciFragment"
+        android:label="Danci"
+        tools:layout="@layout/fragment_danci_">
         <action
             android:id="@+id/action_danci_Fragment2_to_add_Fragment"
             app:destination="@id/add_Fragment"

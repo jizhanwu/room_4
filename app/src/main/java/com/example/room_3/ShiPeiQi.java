@@ -50,10 +50,10 @@ public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
         View itemView;  //适配器ViewHolder（即ItemView)根据useCardView的值"ture or false"还确定用哪个布局文件
         if (useCardView) {
             //第一个参数为想加载的布局资源，第二个将视图放在根视图，第三个视图载入完成 后是否放入根视图中
-            itemView = layoutInflater.inflate(R.layout.mei_yi_hang_2, parent, false);
+            itemView = layoutInflater.inflate(R.layout.cell_kapian2, parent, false);
 
         } else {
-            itemView = layoutInflater.inflate(R.layout.cell_kapian2, parent, false);
+            itemView = layoutInflater.inflate(R.layout.mei_yi_hang_2, parent, false);
         }
 
         final MyViewHolder holder = new MyViewHolder(itemView);
@@ -69,6 +69,7 @@ public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
           holder.switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
               @Override
               public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                  //通过标签ID找到word,前面同时要加一个标签转换（word）
                   Word word = (Word) holder.itemView.getTag(R.id.word_for_view_holder);
                   if (isChecked) {
                       holder.textView_chinese.setVisibility(View.GONE);
@@ -91,12 +92,9 @@ public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
     @Override//系统自动重写的第二个方法，（对itemView中的数据变量进行指定，也叫数据绑定）
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         //绑定逻辑，获取一个word,利用一个position(位置),把三个变量进行关联
-        final Word word = allWords.get(position); //Array字符串+位置编号赋值给数据库word
+        final Word word = allWords.get(position); //Array字符串获取位置编号赋值给数据库word
         holder.itemView.setTag(R.id.word_for_view_holder,word);
-        //getid返回的是一个整数，/用String包裹一下，否则会报错
-        //position指当前列表位置+1，默认从0开始的
         holder.textView_xuhao.setText(String.valueOf(position + 1)); //每个位置+1
-        //不用包裹，因为返回值是一个String，调取数据库Entity(word)列的名称
         holder.textView_Eniglishi.setText(word.getWord());
         holder.textView_chinese.setText(word.getChineseMeaning());
 
