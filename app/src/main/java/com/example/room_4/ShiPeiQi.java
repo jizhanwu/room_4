@@ -1,4 +1,4 @@
-package com.example.room_3;
+package com.example.room_4;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +10,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -24,20 +26,35 @@ import java.util.List;
 3.onCreatViewHolder(
  */
 //创建一个类，实现适配器的功能（创建—>数据绑定->返回）
-public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
-    private List<Word> allWords = new ArrayList<>();//为了防空指针（为allWords在内存创建一个新的空间）
+public class ShiPeiQi extends ListAdapter<Word,ShiPeiQi.MyViewHolder> {
     private boolean useCardView;//新建一个布尔变量，useCardView是一个装载判断ture还是fose的容器
     private WordViewModel wordViewModel;
 
     //下面这层是针对Constration这层，即Reclyery View
-    ShiPeiQi(boolean useCardView, WordViewModel wordViewModel) {//这个适配器通过useCardView来承载是“错”还是“对”？
+    ShiPeiQi(boolean useCardView, WordViewModel wordViewModel) {
+        //列表数据的差异化处理是在后台异步进行的
+        super(new DiffUtil.ItemCallback<Word>() {
+            //比较列表是否相同
+            @Override
+            public boolean areItemsTheSame(@NonNull Word oldItem, @NonNull Word newItem) {
+                //返回，旧的Id,是否等于 新的视图id？如果为“ture”，再判断 下面的“内容”是否...
+                return oldItem.getId() == newItem.getId();
+            }
+
+            //比较内容是否相同(word.chineseMeaning.chineseInvisible)
+            @Override
+            public boolean areContentsTheSame(@NonNull Word oldItem, @NonNull Word newItem) {
+                return (oldItem.getWord().equals(newItem.getWord())
+                        && oldItem.getChineseMeaning().equals(newItem.getChineseMeaning())
+                        && oldItem.isChineseInvisible() == newItem.isChineseInvisible());
+            }
+        });
+        //这个适配器通过useCardView来承载是“错”还是“对”？
         this.useCardView = useCardView;
         this.wordViewModel = wordViewModel;
     }
 
-    void setAllWords(List<Word> allWords) { //数组列表内容即View
-        this.allWords = allWords;//new ArrayList<>()，数组字符串列表 内容赋值给allWords
-    }
+
 
     //点击3个，系统自动重写了以下带@Override 3个方法:
     @NonNull
@@ -92,7 +109,7 @@ public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
     @Override//系统自动重写的第二个方法，（对itemView中的数据变量进行指定，也叫数据绑定）
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         //绑定逻辑，获取一个word,利用一个position(位置),把三个变量进行关联
-        final Word word = allWords.get(position); //Array字符串获取位置编号赋值给数据库word
+        final Word word = getItem(position); //Array字符串获取位置编号赋值给数据库word
         holder.itemView.setTag(R.id.word_for_view_holder,word);
         holder.textView_xuhao.setText(String.valueOf(position + 1)); //每个位置+1
         holder.textView_Eniglishi.setText(word.getWord());
@@ -109,10 +126,6 @@ public class ShiPeiQi extends RecyclerView.Adapter<ShiPeiQi.MyViewHolder> {
 
     }
 
-    @Override//系统自动重写的第三个方法,(返回列表数量数值)
-    public int getItemCount() {
-        return allWords.size();
-    }
 
 
     //为节省运行资源效率，一般自定义类 ViewHolder 来减少无限的findViewById() 的使用

@@ -1,4 +1,4 @@
-package com.example.room_3;
+package com.example.room_4;
 
 
 import android.content.Context;
@@ -77,7 +77,7 @@ public class Add_Fragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //获取文本，变字符串，去掉前后空格
-                String english = editTextEnglish.getText().toString().trim();
+                String english = editTextEnglish.getText().toString().trim() ;
                 String chinese = editTextChinese.getText().toString().trim();
                 //英文和中文不等于“空”，提交按钮变为正常“黑色”
                 button.setEnabled(!english.isEmpty()&&!chinese.isEmpty());

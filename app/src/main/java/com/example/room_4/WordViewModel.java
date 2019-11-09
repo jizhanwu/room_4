@@ -1,4 +1,4 @@
-package com.example.room_3;
+package com.example.room_4;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,17 +19,19 @@ public class WordViewModel extends AndroidViewModel {
         //返回一个，去调取仓库内的（当前列表内容）
         return wordRepository.cangkuLiebiao();
      }
+     LiveData<List<Word>> findWordsWithPatten(String patten){
+        return wordRepository.findWordsWithPatten(patten);
+     };
 
-     //主线程（UI线程）为这个方法传递参数（word1,word2)
-    void insterWords(Word...words) {
-        //带着参数让仓库去执行，并得到数据
-        wordRepository.insterWords(words);
+     //主线程（UI线程）为这个方法传递参数（word1,word2),//带着参数让仓库去执行，并得到数据
+    void insterWords(Word...words) { wordRepository.insterWords(words); }
+    void updateWords(Word...words){ wordRepository.updateWords(words);  }
+    void deleteWords(Word...words){wordRepository.deleteWords(words);}
+    void deleteAllWords(Word...words){ wordRepository.deleteAllWords();  }
+
+
     }
-    void updateWords(Word...words){
-        wordRepository.updateWords(words);
-    }
-    void deleteAllWords(Word...words){wordRepository.deleteAllWords();   }
 
 
 
-}
+

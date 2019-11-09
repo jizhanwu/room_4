@@ -1,7 +1,9 @@
-package com.example.room_3;
+package com.example.room_4;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.provider.UserDictionary;
+
 import androidx.lifecycle.LiveData;
 import java.util.List;
 
@@ -37,9 +39,14 @@ class WordRepository {
     void deleteAllWords(Word... words) {
         new DeleteAllAsyncTask(wordDao).execute();
     }
+    void deleteWords(Word...words){
+        new Delete_XianCeng(wordDao).execute();}
 
     LiveData<List<Word>> cangkuLiebiao(){  //通过这个接口将内容反馈给ViewModel
         return allWordLive;
+    }
+    LiveData<List<Word>> findWordsWithPatten(String patten){
+        return wordDao.findWordsWithPatten("%" + patten + "%");//加%分号，是为了模糊匹配，否则精准
     }
 
    //匿名内部类来实现具体的操作逻辑
@@ -67,6 +74,7 @@ class WordRepository {
 
     }
 
+
     static class UpdateAsyncTask extends AsyncTask<Word, Void, Void> { //更新线程
         private WordDao wordDao;
 
@@ -79,6 +87,22 @@ class WordRepository {
             wordDao.updateWords(words);
             return null;
         }
+    }
+
+    static class Delete_XianCeng extends AsyncTask<Word, Void, Void> {  //新建一个线程抽象类
+        private WordDao wordDao;  //重新定义一个WordDao变量
+
+        Delete_XianCeng(WordDao wordDao) {   //
+            this.wordDao = wordDao;        //通过内部类方法doInBackground(在后台进行删除数据操作
+        }
+
+        @Override
+        protected Void doInBackground(Word... words) {
+            wordDao.deleteWords(words);
+            return null;
+        }
+
+
     }
 
 
@@ -98,4 +122,129 @@ class WordRepository {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -8,12 +8,12 @@
 
     <fragment
         android:id="@+id/add_Fragment"
-        android:name="com.example.room_3.Add_Fragment"
+        android:name="com.example.room_4.Add_Fragment"
         android:label="Add"
         tools:layout="@layout/fragment_add_" />
     <fragment
         android:id="@+id/danci_Fragment2"
-        android:name="com.example.room_3.danciFragment"
+        android:name="com.example.room_4.danciFragment"
         android:label="Danci"
         tools:layout="@layout/fragment_danci_">
         <action

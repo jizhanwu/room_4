@@ -1,25 +1,13 @@
-package com.example.room_3;
+package com.example.room_4;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.TextView;
-
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +26,8 @@ private NavController navController;
         NavigationUI.setupActionBarWithNavController(this, navController);
 
     }
+
+
 
     @Override
     //为左上解“小箭头”添加功能
